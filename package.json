@@ -1,0 +1,40 @@
+{
+  "name": "qa-agent-recruter-ai",
+  "version": "1.0.0",
+  "description": "AI-powered QA agent for Recruter.ai automated testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "install-browsers": "playwright install",
+    "generate-tests": "python scripts/generate_testcases.py",
+    "convert-tests": "node scripts/generatePlaywrightTests.js",
+    "run-all": "npm run generate-tests && npm run convert-tests && npm run test",
+    "dashboard": "python dashboard.py"
+  },
+  "keywords": [
+    "qa",
+    "testing",
+    "playwright",
+    "ai",
+    "automation"
+  ],
+  "author": "QA Agent",
+  "license": "MIT",
+  "dependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.53.2",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "playwright": "^1.53.2",
+    "puppeteer": "^21.5.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.35",
+    "@types/node": "^24.0.10",
+    "typescript": "^5.2.0"
+  }
+}

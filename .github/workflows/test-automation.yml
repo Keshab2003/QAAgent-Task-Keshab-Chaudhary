@@ -1,0 +1,132 @@
+name: Test Automation CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * *'  # Run daily at 2 AM
+
+jobs:
+  test-automation:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm install
+        npm install -g playwright
+        npx playwright install
+        
+    - name: Generate test cases
+      run: |
+        python scripts/generate_testcases.py
+        
+    - name: Convert to Playwright tests
+      run: |
+        node scripts/generatePlaywrightTests.js
+        
+    - name: Run tests
+      run: |
+        npx playwright test --reporter=list,html,json --output-dir=report
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results-${{ matrix.node-version }}
+        path: |
+          report/
+          test-results/
+          
+    - name: Generate dashboard
+      run: |
+        python dashboard.py
+        
+    - name: Upload dashboard
+      uses: actions/upload-artifact@v3
+      with:
+        name: dashboard
+        path: dashboard.py
+        
+  report-generation:
+    needs: test-automation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Download test results
+      uses: actions/download-artifact@v3
+      with:
+        name: test-results-18.x
+        path: report/
+        
+    - name: Generate comprehensive report
+      run: |
+        python -c "
+        import json
+        import os
+        from datetime import datetime
+        
+        # Load test results
+        if os.path.exists('report/test-results.json'):
+            with open('report/test-results.json', 'r') as f:
+                data = json.load(f)
+                
+            # Generate summary
+            summary = {
+                'total_tests': data['summary']['total'],
+                'passed_tests': data['summary']['passed'],
+                'failed_tests': data['summary']['failed'],
+                'success_rate': data['summary']['successRate'],
+                'timestamp': datetime.now().isoformat(),
+                'ci_run': True
+            }
+            
+            # Save summary
+            with open('report/ci-summary.json', 'w') as f:
+                json.dump(summary, f, indent=2)
+                
+            print('Report generated successfully!')
+        "
+        
+    - name: Upload report
+      uses: actions/upload-artifact@v3
+      with:
+        name: ci-report
+        path: report/ci-summary.json
+        
+  notification:
+    needs: [test-automation, report-generation]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Download test results
+      uses: actions/download-artifact@v3
+      with:
+        name: ci-report
+        
+    - name: Send notification
+      run: |
+        if [ -f "report/ci-summary.json" ]; then
+          echo "Test automation completed successfully!"
+          echo "Check the artifacts for detailed results."
+        else
+          echo "Test automation failed!"
+          exit 1 

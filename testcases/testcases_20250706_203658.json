@@ -1,0 +1,339 @@
+{
+  "metadata": {
+    "generated_at": "2025-07-06T20:36:52.352055",
+    "total_cases": 10,
+    "categories": {
+      "functional": 6,
+      "accessibility": 1,
+      "performance": 1,
+      "security": 1
+    }
+  },
+  "test_cases": [
+    {
+      "id": "TC001",
+      "title": "User Registration Flow",
+      "description": "Test the complete user registration process for Recruter.ai",
+      "prerequisites": [
+        "User has valid email address",
+        "User has strong password"
+      ],
+      "steps": [
+        "Navigate to Recruter.ai signup page",
+        "Enter valid email address",
+        "Enter strong password",
+        "Click on 'Create Account' button",
+        "Verify email verification process",
+        "Complete profile setup"
+      ],
+      "expected_results": "User account is created successfully and user is redirected to dashboard",
+      "priority": "High",
+      "category": "Functional",
+      "browser_compatibility": [
+        "Chrome",
+        "Firefox",
+        "Safari"
+      ],
+      "mobile_compatibility": true,
+      "accessibility_checks": [
+        "Form labels are properly associated",
+        "Error messages are announced to screen readers"
+      ],
+      "performance_metrics": [
+        "Page load time < 3s",
+        "Form submission < 2s"
+      ]
+    },
+    {
+      "id": "TC002",
+      "title": "Create Interview with Job Description",
+      "description": "Test the interview creation flow with job description input",
+      "prerequisites": [
+        "User is logged in",
+        "User has valid job description"
+      ],
+      "steps": [
+        "Navigate to Create Interview section",
+        "Enter job description in text area",
+        "Click 'Save' button",
+        "Verify AI skill suggestions appear",
+        "Select relevant skills",
+        "Choose difficulty level",
+        "Click 'Create Interview'"
+      ],
+      "expected_results": "Interview is created successfully with unique public link",
+      "priority": "High",
+      "category": "Functional",
+      "browser_compatibility": [
+        "Chrome",
+        "Firefox",
+        "Safari"
+      ],
+      "mobile_compatibility": true,
+      "accessibility_checks": [
+        "Text areas have proper labels",
+        "Buttons have accessible names"
+      ],
+      "performance_metrics": [
+        "AI response time < 5s",
+        "Page load time < 3s"
+      ]
+    },
+    {
+      "id": "TC003",
+      "title": "Resume Screening Process",
+      "description": "Test the AI-powered resume screening functionality",
+      "prerequisites": [
+        "Interview is created",
+        "Resume files are available"
+      ],
+      "steps": [
+        "Upload resume files",
+        "Click 'Start Screening'",
+        "Wait for AI analysis",
+        "Review screening results",
+        "Check candidate scores",
+        "Verify AI recommendations"
+      ],
+      "expected_results": "Resumes are screened and scored accurately by AI",
+      "priority": "High",
+      "category": "Functional",
+      "browser_compatibility": [
+        "Chrome",
+        "Firefox",
+        "Safari"
+      ],
+      "mobile_compatibility": false,
+      "accessibility_checks": [
+        "File upload has proper labels",
+        "Progress indicators are announced"
+      ],
+      "performance_metrics": [
+        "File upload < 10s",
+        "AI processing < 30s"
+      ]
+    },
+    {
+      "id": "TC004",
+      "title": "Video Interview Execution",
+      "description": "Test the video interview recording and submission process",
+      "prerequisites": [
+        "Candidate has interview link",
+        "Camera and microphone are working"
+      ],
+      "steps": [
+        "Click on interview link",
+        "Allow camera and microphone permissions",
+        "Start video interview",
+        "Answer interview questions",
+        "Record video responses",
+        "Submit interview"
+      ],
+      "expected_results": "Video interview is recorded and submitted successfully",
+      "priority": "High",
+      "category": "Functional",
+      "browser_compatibility": [
+        "Chrome",
+        "Firefox"
+      ],
+      "mobile_compatibility": true,
+      "accessibility_checks": [
+        "Media controls are accessible",
+        "Transcript is available"
+      ],
+      "performance_metrics": [
+        "Video quality is good",
+        "Recording latency < 1s"
+      ]
+    },
+    {
+      "id": "TC005",
+      "title": "WCAG 2.1 AA Accessibility Compliance",
+      "description": "Test accessibility compliance across all pages",
+      "prerequisites": [
+        "All pages are accessible"
+      ],
+      "steps": [
+        "Navigate to all major pages",
+        "Test keyboard navigation",
+        "Verify color contrast ratios",
+        "Check ARIA labels",
+        "Test screen reader compatibility",
+        "Verify focus indicators"
+      ],
+      "expected_results": "All pages meet WCAG 2.1 AA standards",
+      "priority": "Medium",
+      "category": "Accessibility",
+      "browser_compatibility": [
+        "Chrome",
+        "Firefox",
+        "Safari"
+      ],
+      "mobile_compatibility": true,
+      "accessibility_checks": [
+        "Color contrast ratio >= 4.5:1",
+        "All interactive elements are keyboard accessible"
+      ],
+      "performance_metrics": [
+        "Screen reader announcement time < 2s"
+      ]
+    },
+    {
+      "id": "TC006",
+      "title": "Cross-browser Compatibility",
+      "description": "Test application functionality across different browsers",
+      "prerequisites": [
+        "Application works in primary browser"
+      ],
+      "steps": [
+        "Test in Chrome browser",
+        "Test in Firefox browser",
+        "Test in Safari browser",
+        "Verify consistent functionality",
+        "Check responsive design",
+        "Test JavaScript compatibility"
+      ],
+      "expected_results": "Application works consistently across all supported browsers",
+      "priority": "Medium",
+      "category": "Functional",
+      "browser_compatibility": [
+        "Chrome",
+        "Firefox",
+        "Safari"
+      ],
+      "mobile_compatibility": true,
+      "accessibility_checks": [
+        "Consistent accessibility across browsers"
+      ],
+      "performance_metrics": [
+        "Consistent load times across browsers"
+      ]
+    },
+    {
+      "id": "TC007",
+      "title": "Application Performance Testing",
+      "description": "Test application performance under various conditions",
+      "prerequisites": [
+        "Application is deployed"
+      ],
+      "steps": [
+        "Measure page load times",
+        "Test with slow network connection",
+        "Monitor memory usage",
+        "Check CPU utilization",
+        "Test with multiple concurrent users",
+        "Verify API response times"
+      ],
+      "expected_results": "Application performs within acceptable limits",
+      "priority": "Medium",
+      "category": "Performance",
+      "browser_compatibility": [
+        "Chrome",
+        "Firefox",
+        "Safari"
+      ],
+      "mobile_compatibility": true,
+      "accessibility_checks": [
+        "Performance doesn't affect accessibility"
+      ],
+      "performance_metrics": [
+        "Page load time < 3s",
+        "Time to interactive < 5s",
+        "Memory usage < 100MB"
+      ]
+    },
+    {
+      "id": "TC008",
+      "title": "Error Handling and Recovery",
+      "description": "Test application behavior during error conditions",
+      "prerequisites": [
+        "Application is running"
+      ],
+      "steps": [
+        "Simulate network disconnection",
+        "Test with invalid input data",
+        "Verify error messages are clear",
+        "Test recovery mechanisms",
+        "Check error logging",
+        "Verify graceful degradation"
+      ],
+      "expected_results": "Application handles errors gracefully and provides clear feedback",
+      "priority": "Medium",
+      "category": "Functional",
+      "browser_compatibility": [
+        "Chrome",
+        "Firefox",
+        "Safari"
+      ],
+      "mobile_compatibility": true,
+      "accessibility_checks": [
+        "Error messages are announced to screen readers"
+      ],
+      "performance_metrics": [
+        "Error recovery time < 5s"
+      ]
+    },
+    {
+      "id": "TC009",
+      "title": "Mobile Responsive Design",
+      "description": "Test application responsiveness on mobile devices",
+      "prerequisites": [
+        "Mobile device or emulator available"
+      ],
+      "steps": [
+        "Test on mobile Chrome",
+        "Test on mobile Safari",
+        "Verify touch interactions",
+        "Check viewport scaling",
+        "Test landscape and portrait modes",
+        "Verify mobile-specific features"
+      ],
+      "expected_results": "Application is fully functional on mobile devices",
+      "priority": "Medium",
+      "category": "Functional",
+      "browser_compatibility": [
+        "Mobile Chrome",
+        "Mobile Safari"
+      ],
+      "mobile_compatibility": true,
+      "accessibility_checks": [
+        "Touch targets are large enough",
+        "Text is readable on small screens"
+      ],
+      "performance_metrics": [
+        "Mobile page load time < 5s"
+      ]
+    },
+    {
+      "id": "TC010",
+      "title": "Security and Data Protection",
+      "description": "Test application security measures",
+      "prerequisites": [
+        "Application has security measures implemented"
+      ],
+      "steps": [
+        "Test input validation",
+        "Verify HTTPS enforcement",
+        "Check for XSS vulnerabilities",
+        "Test CSRF protection",
+        "Verify data encryption",
+        "Check session management"
+      ],
+      "expected_results": "Application is secure against common vulnerabilities",
+      "priority": "High",
+      "category": "Security",
+      "browser_compatibility": [
+        "Chrome",
+        "Firefox",
+        "Safari"
+      ],
+      "mobile_compatibility": true,
+      "accessibility_checks": [
+        "Security measures don't break accessibility"
+      ],
+      "performance_metrics": [
+        "Security checks don't significantly impact performance"
+      ]
+    }
+  ]
+}
